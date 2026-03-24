@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profil Siswa Bdumtas Piano</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      text-decoration: none;
+    }
+    body {
+      font-family: 'Fredoka', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #8EC5FC, #E0C3FC);
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #6C63FF;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .nav button {
+      background: #FFD166;
+      border: none;
+      color: #333;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 12px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .nav button:hover {
+      transform: scale(1.08);
+      background: #FFB703;
+      color: white;
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid #6C63FF;
+      margin-bottom: 10px;
+    }
+
+    .info {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 16px;
+    }
+
+    .level, .level a {
+      padding: 4px 10px;
+      background: #6C63FF;
+      color: white;
+      border-radius: 12px;
+      font-size: 14px;
+    }
+
+    .stat {
+      margin: 15px 0;
+    }
+
+    .bar-bg {
+      background: #eee;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 24px;
+    }
+
+    .bar-fill {
+      height: 100%;
+      color: white;
+      padding-left: 10px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+    }
+
+    .tasks {
+      margin-top: 30px;
+    }
+
+    .task {
+      background: #FFF3C4;
+      padding: 12px;
+      border-left: 5px solid #FFD166;
+      margin-bottom: 12px;
+      border-radius: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .info {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Profil Siswa</h1>
+
+  <div class="nav">
+    <button onclick="showPage('profile')">Dashboard</button>
+    <button onclick="showPage('alur')">Alur Belajar</button>
+    <button onclick="showPage('tasks')">Tugas</button>
+    <button onclick="showPage('stats')">Statistik</button>
+    <button onclick="showPage('tools')">Tools</button>
+    <!-- <button onclick="alert('Sampai jumpa!')">Keluar</button> -->
+  </div>
+
+  <!-- PROFIL -->
+  <div id="profile" class="page-section">
+    <div class="profile-header">
+      <img src="img.jpg" alt="Foto Siswa" class="profile-pic">
+      <h2 id="student-name">Matthew Ali</h2>
+    </div>
+
+    <div class="info"><strong>Usia:</strong> <span id="student-age">9 tahun</span></div>
+    <div class="info"><strong>Level:</strong> <span class="level" id="student-level">unknown (lakukan tes kemampuan segera)</span></div>
+    <div class="info"><strong>Hari Belajar:</strong> <span class="level" id="student-level">Selasa</span></div>
+    <div class="info"><strong>Jam Belajar:</strong> <span class="level" id="student-level">16.00 WITA</span></div>
+    <!-- <div class="info"><strong>Rapor</strong> <span class="level" id="student-level"><a href="ppm_jj.pdf">Penilaian Penampilan 29-11/2025</a></span></div> -->
+  </div>
+
+  <!-- ALUR BELAJAR -->
+  <div id="alur" class="page-section hidden">
+    <div class="task">Lakukan tes kemampuan sebelum memulai pembelajaran.</div>
+    <!-- <h2>Alur Belajar Piano Pemula</h2> -->
+    <!-- <h3>Ikuti alur belajar di bawah ini supaya mendapat hasil yang memuaskan.</h3>
+    <div class="task">1. Cari tahu tentang Partitur: <a href="">klik di sini.</a></div>
+    <div class="task">2. Cari tahu tentang Garis Paranada: <a href="">klik di sini.</a></div>
+    <div class="task">3. Cari tahu tentang Clef: <a href="">klik di sini.</a></div>
+    <div class="task">4. Cari tahu tentang Kromatik: <a href="">klik di sini.</a></div>
+    <div class="task">5. Cari tahu tentang Tanda Birama: <a href="">klik di sini.</a></div>
+    <div class="task">6. Cari tahu tentang Not Balok dan cara baca Not Balok: <a href="">klik di sini.</a></div>
+    <div class="task">7. Buat tugas 1 - 12 Piano Pemula</div> -->
+    <!-- <h2>Alur Belajar Piano Intermediate</h2> -->
+    <!-- <div class="task">8. ... <a href="">klik di sini.</a></div> -->
+  </div>
+
+  <!-- TUGAS -->
+  <div id="tasks" class="page-section hidden">
+    <div class="task">Lakukan tes kemampuan sebelum memulai pembelajaran.</div>
+    <!-- <h2>Tugas Piano Pemula</h2> -->
+    <!-- <div class="task"><a href="">Tugas 1 - DONE</a></div>
+    <div class="task"><a href="">Tugas 2 - DONE</a></div>
+    <div class="task"><a href="">Tugas 3 - DONE</a></div>
+    <div class="task">Mainkan <a href="">Lagu 1</a> untuk naik ke level 2</div>
+    <div class="task"><a href="">Tugas 4 - DONE</a></div>
+    <div class="task"><a href="">Tugas 5 - DONE</a></div>
+    <div class="task"><a href="">Tugas 6 - DONE</a></div>
+    <div class="task">Mainkan <a href="">Lagu 2</a> untuk naik ke level 3</div>
+    <div class="task"><a href="">Tugas 7 - DONE</a></div>
+    <div class="task"><a href="">Tugas 8 - DONE</a></div>
+    <div class="task"><a href="">Tugas 9 - DONE</a></div>
+    <div class="task">Mainkan <a href="">Lagu 3</a> untuk naik ke level 4</div>
+    <div class="task"><a href="">Tugas 10 - DONE</a></div>
+    <div class="task"><a href="">Tugas 11 - DONE</a></div>
+    <div class="task"><a href="">Tugas 12 - DONE</a></div>
+    <div class="task">Mainkan <a href="lagu4.pdf">Lagu 4</a> untuk naik ke level 5</div>
+    <div class="task">Ikut Ujian Naik Kelas untuk lanjut ke Piano Menengah!!!</div> -->
+    <!-- <h2>Tugas Piano Menengah</h2>
+    <div class="task"><a href="tugas13_intermediate.pdf">Tugas 13</a></div>
+    <div class="task"><a href="tugas14_intermediate.pdf">Tugas 14</a></div>
+    <div class="task"><a href="tugas15_intermediate.pdf">Tugas 15</a></div>
+    <div class="task">Mainkan <a href="lagu5.pdf">Lagu 5</a> dan <a href="lagu6.pdf">Lagu 6</a> untuk naik ke level 6 (Ikut Ujian Naik Level)</div> -->
+    <!-- <div class="task"><a href="">Tugas 16</a></div>
+    <div class="task"><a href="">Tugas 17</a></div>
+    <div class="task"><a href="">Tugas 18</a></div>
+    <div class="task">Mainkan <a href="">Lagu 7</a> dan <a href="">Lagu 8</a> untuk naik ke level 7</div>
+    <div class="task"><a href="">Tugas 19</a></div>
+    <div class="task"><a href="">Tugas 20</a></div>
+    <div class="task"><a href="">Tugas 21</a></div>
+    <div class="task">Mainkan <a href="">Lagu 9</a> dan <a href="">Lagu 10</a> untuk naik ke level 8</div>
+    <div class="task"><a href="">Tugas 22</a></div>
+    <div class="task"><a href="">Tugas 23</a></div>
+    <div class="task"><a href="">Tugas 24</a></div>
+    <div class="task">Mainkan <a href="">Lagu 11</a> dan <a href="">Lagu 12</a> untuk naik ke level 9</div>
+    <div class="task"><a href="">Tugas 25</a></div>
+    <div class="task"><a href="">Tugas 26</a></div>
+    <div class="task"><a href="">Tugas 27</a></div>
+    <div class="task">Mainkan <a href="">Lagu 13</a> dan <a href="">Lagu 14</a> untuk naik ke level 10</div>
+    <div class="task"><a href="">Tugas 28</a></div>
+    <div class="task"><a href="">Tugas 29</a></div>
+    <div class="task"><a href="">Tugas 30</a></div>
+    <div class="task">Mainkan <a href="">Lagu 15</a> dan <a href="">Lagu 16</a> untuk naik ke level 11</div>
+    <div class="task"><a href="">Tugas 31</a></div>
+    <div class="task"><a href="">Tugas 32</a></div>
+    <div class="task"><a href="">Tugas 33</a></div>
+    <div class="task">Mainkan <a href="">Lagu 17</a> dan <a href="">Lagu 18</a> untuk naik ke level 12</div>
+    <div class="task"><a href="">Tugas 34</a></div>
+    <div class="task"><a href="">Tugas 35</a></div>
+    <div class="task"><a href="">Tugas 36</a></div>
+    <div class="task">Mainkan <a href="">Lagu 19</a> dan <a href="">Lagu 20</a> untuk naik ke level 13</div>
+    <div class="task"><a href="">Tugas 37</a></div>
+    <div class="task"><a href="">Tugas 38</a></div>
+    <div class="task"><a href="">Tugas 39</a></div>
+    <div class="task">Mainkan <a href="">Lagu 21</a> dan <a href="">Lagu 22</a> untuk naik ke level 14</div>
+    <div class="task"><a href="">Tugas 40</a></div>
+    <div class="task"><a href="">Tugas 41</a></div>
+    <div class="task"><a href="">Tugas 42</a></div>
+    <div class="task">Mainkan <a href="">Lagu 23</a> dan <a href="">Lagu 24</a> untuk naik ke level 15</div>
+    <div class="task"><a href="">Tugas 43</a></div>
+    <div class="task"><a href="">Tugas 44</a></div>
+    <div class="task"><a href="">Tugas 45</a></div>
+    <div class="task">Mainkan <a href="">Lagu 25</a> untuk naik ke level 16</div>
+    <div class="task">Ikut Ujian Naik Kelas untuk lanjut ke kelas selanjutnya...</div> -->
+  </div>
+
+  <!-- STATISTIK -->
+  <div id="stats" class="page-section hidden">
+    <h2>Statistik Karakter</h2>
+    <div class="stat">
+      <label>Intelegent</label>
+      <div class="bar-bg"><div class="bar-fill" style="width: 0%; background: #6C63FF;">0%</div></div>
+    </div>
+    <div class="stat">
+      <label>Strength</label>
+      <div class="bar-bg"><div class="bar-fill" style="width: 0%; background: #FFD166;">0%</div></div>
+    </div>
+    <div class="stat">
+      <label>Agility</label>
+      <div class="bar-bg"><div class="bar-fill" style="width: 0%; background: #8EC5FC;">0%</div></div>
+    </div>
+  </div>
+
+  <!-- TOOLS -->
+  <div id="tools" class="page-section hidden">
+    <label>ChatBot</label>
+    <!-- <div class="task">Hubungi pengajar untuk mengupload tugas...</div> -->
+    <div class="task"><a href="chatbot/index.html">Buka ChatBot</a></div>
+    <label>Songs</label>
+    <!-- <div class="task">Hubungi pengajar untuk mengupload tugas...</div> -->
+    <div class="task"><a href="songs/lirik.html">Buka Songs</a></div>
+  </div>
+</div>
+
+<script>
+  function showPage(pageId) {
+    const pages = document.querySelectorAll('.page-section');
+    pages.forEach(page => page.classList.add('hidden'));
+    document.getElementById(pageId).classList.remove('hidden');
+  }
+</script>
+
+</body>
+</html>
