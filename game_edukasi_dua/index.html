@@ -199,10 +199,13 @@ let questions=[
 {q:"Nada apa yang ditunjukkan gambar ini?",img:"img/nada-e.jpg",a:["C","D","E"],c:2},
 {q:"Nada apa yang ditunjukkan gambar ini?",img:"img/nada-f.jpg",a:["F","G","A"],c:0},
 {q:"Nada apa yang ditunjukkan gambar ini?",img:"img/nada-g.jpg",a:["F","G","A"],c:1},
-// {q:"Nada apa yang ditunjukkan gambar ini?",img:"nada-a-notbalok.jpg",a:["G","A","B"],c:1},
-// {q:"Nada apa yang ditunjukkan gambar ini?",img:"nada-b-notbalok.jpg",a:["G","A","B"],c:2},
-// {q:"Jumlah senar gitar?",a:["4","5","6"],c:2},
-// {q:"Alat musik dipukul?",a:["Drum","Biola","Seruling"],c:0},
+{q:"Nada apa yang ditunjukkan gambar ini?",img:"img/nada-a-4.jpg",a:["G","A","B"],c:1},
+{q:"Nada apa yang ditunjukkan gambar ini?",img:"img/nada-b-4.jpg",a:["G","A","B"],c:2},
+{q:"Nada apa yang ditunjukkan gambar ini?",img:"img/nada-c-4.jpg",a:["C","A","B"],c:0},
+{q:"Nada apa yang ditunjukkan gambar ini?",img:"img/nada-d-4.jpg",a:["C","D","B"],c:1},
+{q:"Nada apa yang ditunjukkan gambar ini?",img:"img/nada-e-4.jpg",a:["E","D","B"],c:0},
+{q:"Nada apa yang ditunjukkan gambar ini?",img:"img/nada-f-4.jpg",a:["E","D","F"],c:2},
+{q:"Nada apa yang ditunjukkan gambar ini?",img:"img/nada-g-4.jpg",a:["E","G","F"],c:1},
 {q:"Ini nada apa?",audio:"audio/nada-c.mp3",a:["C","D","E"],c:0},
 {q:"Ini nada apa?",audio:"audio/nada-d.mp3",a:["C","D","E"],c:1},
 {q:"Ini nada apa?",audio:"audio/nada-e.mp3",a:["C","D","E"],c:2},
@@ -210,8 +213,13 @@ let questions=[
 {q:"Ini nada apa?",audio:"audio/nada-g.mp3",a:["E","F","G"],c:2},
 {q:"Ini nada apa?",audio:"audio/nada-a.mp3",a:["A","B","C"],c:0},
 {q:"Ini nada apa?",audio:"audio/nada-b.mp3",a:["A","B","C"],c:1},
+{q:"Ini nada apa?",audio:"audio/nada-c-c.mp3",a:["A - C","B - C","C - C"],c:2},
+{q:"Ini nada apa?",audio:"audio/nada-c-b.mp3",a:["A - C","B - C","C - B"],c:2},
+{q:"Ini nada apa?",audio:"audio/nada-e-f.mp3",a:["E - F","B - C","C - D"],c:0},
+{q:"Ini nada apa?",audio:"audio/nada-b-d.mp3",a:["E - F","B - D","C - D"],c:1},
+{q:"Ini nada apa?",audio:"audio/nada-f-c.mp3",a:["F - C","B - D","C - D"],c:0},
+{q:"Ini nada apa?",audio:"audio/nada-g-a.mp3",a:["E - F","B - D","C - D"],c:1},
 {q:"Do Re Mi adalah?",a:["Warna","Nada","Angka"],c:1},
-// {q:"Alat musik ditiup?",a:["Seruling","Gitar","Drum"],c:0}
 ];
 
 function startGame(){
@@ -300,8 +308,8 @@ function result(){
     document.getElementById("score").innerText="Skor: "+score+"/"+questions.length;
 
     let g="C";
-    if(score>=13) g="B";
-    if(score>=15) g="A";
+    if(score>=20) g="B";
+    if(score>=25) g="A";
 
     document.getElementById("grade").innerText="Grade: "+g;
 }

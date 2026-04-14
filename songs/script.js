@@ -1,4 +1,96 @@
 const lyrics = {
+      takKuTahuKanHariEsok: `Ira F. Stanphill - Tak Ku Tahu 'Kan Hari Esok
+[Intro]
+D7 C D7 G Cm
+
+[Verse 1]
+        G             Gmaj7
+Tak ku tahu kan hari esok
+       C          Bm    
+Namun langkahku tegap
+       C          Bm
+Bukan surya ku harapkan
+        A          D7
+Kar'na surya kan lenyap
+
+    G         Gmaj7
+O tiada ku gelisah
+      C     Bm
+Akan masa menjelang
+      C       Bm
+Ku berjalan serta Yesus
+      D7       G
+Maka hatiku tenang
+
+
+[Chorus]
+        C           Bm
+Banyak hal tak ku pahami
+       A          D7
+Dalam masa menjelang
+        B            Em 
+Tapi t'rang bagi ku ini
+        D7            G 
+Tangan Tuhan yang pegang
+
+[Verse 2]
+E        A          A7
+Makin t'ranglah perjalan
+        D         A
+Makin tinggi aku naik
+       D          A
+Dan bebanku makin ringan
+       B              E
+Makin nampaklah yang baik
+
+    A               A7
+Di sanalah t'rang abadi
+       D            A
+Tiada tangis dan keluh
+       D              C#m
+Di neg'ri seb'rang pelangi
+        E           A
+Kita k'lak kan bertemu`,
+      kasihsetiamu: `Tabita Sipahutar - Kasih Setia-Mu
+[Intro]
+F G Am F C G C
+
+[Verse 1]
+G           D         
+ Disaat ku berjalan
+Em           Bm
+ di dalam kegelapan
+C             Bm
+ Kau menuntun jalanku
+   Am          D
+Yesus Engkau baik
+
+[Verse 2]
+G               D
+ Engkau yang menopang ku
+Em          Bm
+ disaat ku terjatuh
+C            Bm
+ ke dalam dosa dunia
+     Am        D
+Kau mengampuniku
+
+[Chorus]
+           G
+Tri-ma-ka-sih
+B           Em      D     C
+ buat kasih se-tia Mu Yesus
+           Am
+Kau tak memandang ku
+D               G
+ yang penuh dengan dosa
+D           G
+ Engkau mengampuni
+B          Em  D    C
+ dengan kasih mu Yesus
+        Am       D            G  
+betapa dahsyatnya Engkau bagiku`,
+
       hatikupercaya: `Edward Chen - Hatiku Percaya
 [Intro]
 F G Am F C G C
