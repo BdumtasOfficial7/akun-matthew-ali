@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Musik Anak SUPER PRO</title>
+
+<!-- Screenshot -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<style>
+/* ===== GLOBAL ===== */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: url(bg1.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+    width: 100%;
+    max-width: 420px;
+    padding: 15px;
+}
+
+/* ===== CARD ===== */
+.card {
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    animation: fadeIn .4s ease;
+}
+
+/* ===== TITLE ===== */
+.title {
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+/* ===== INPUT ===== */
+.input-box {
+    display:flex;
+    background:#f1f1f1;
+    border-radius:12px;
+    padding:10px;
+    margin-bottom:10px;
+}
+
+.input-box span {
+    margin-right:8px;
+}
+
+.input-box input {
+    border:none;
+    outline:none;
+    background:transparent;
+    flex:1;
+}
+
+/* ===== BUTTON ===== */
+button {
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    font-weight:bold;
+    color:white;
+    background: linear-gradient(135deg,#ff7e5f,#ff3f34);
+    margin-top:10px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+button:hover {
+    transform:scale(1.05);
+}
+
+/* ===== QUESTION ===== */
+#question {
+    font-size:18px;
+    margin-bottom:10px;
+}
+
+/* ===== ANSWERS ===== */
+.answer {
+    background:#eee;
+    padding:12px;
+    border-radius:10px;
+    margin:8px 0;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.answer:hover {
+    background:#ddd;
+}
+
+/* ===== PROGRESS ===== */
+.progress {
+    height:8px;
+    background:#ddd;
+    border-radius:10px;
+    margin-bottom:10px;
+}
+
+.bar {
+    height:8px;
+    background:green;
+    width:0%;
+    border-radius:10px;
+}
+
+/* ===== FEEDBACK ===== */
+#feedback {
+    margin-top:10px;
+    font-weight:bold;
+}
+
+/* ===== RESULT ===== */
+.result {
+    text-align:center;
+}
+
+/* ===== HIDDEN ===== */
+.hidden { display:none; }
+
+/* ===== ANIMASI ===== */
+@keyframes fadeIn {
+    from {opacity:0; transform:translateY(20px);}
+    to {opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- START -->
+<div id="start" class="card">
+    <div class="title">🎵 Quiz Musik Anak</div>
+
+    <div class="input-box">
+        <span>👤</span>
+        <input type="text" id="name" placeholder="Masukkan nama kamu">
+    </div>
+
+    <button onclick="startGame()">Mulai Game</button>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz" class="card hidden">
+    <div class="progress"><div id="bar" class="bar"></div></div>
+
+    <div id="question"></div>
+    <div id="media"></div>
+    <div id="answers"></div>
+    <div id="feedback"></div>
+</div>
+
+<!-- RESULT -->
+<div id="result" class="card hidden result">
+    <h2>🎉 Hasil Akhir</h2>
+    <p id="player"></p>
+    <p id="score"></p>
+    <p id="grade"></p>
+
+    <button onclick="screenshot()">📸 Screenshot</button>
+    <button onclick="shareWA()">📲 Kirim WA</button>
+</div>
+
+</div>
+
+<!-- SOUND -->
+<audio id="correct" src="audio/benar2.mp3"></audio>
+<audio id="wrong" src="audio/salah.mp3"></audio>
+
+<script>
+let player="",current=0,score=0;
+
+let questions=[
+{q:"Alat musik apa ini?",img:"img/piano.jpg",a:["Piano","Gitar","Drum"],c:0},
+{q:"Berapa jumlah tuts pada piano di bawah ini?",img:"img/tuts-piano.jpg",a:["12","13","14"],c:0},
+{q:"Apa nama garis-garis ini?",img:"img/staf.jpg",a:["steve","staf","line"],c:1},
+{q:"Apa nama simbol ini?",img:"img/treble-clef.png",a:["Bass Clef","Tenor Clef","Treble Clef"],c:2},
+{q:"Nada apa yang ditunjukkan gambar ini?",img:"img/nada-c.jpg",a:["C5","D","E"],c:0},
+{q:"Nada apa yang ditunjukkan gambar ini?",img:"img/nada-d.jpg",a:["C","D","E"],c:1},
+{q:"Nada apa yang ditunjukkan gambar ini?",img:"img/nada-e.jpg",a:["C","D","E"],c:2},
+{q:"Nada apa yang ditunjukkan gambar ini?",img:"img/nada-f.jpg",a:["F","G","A"],c:0},
+{q:"Nada apa yang ditunjukkan gambar ini?",img:"img/nada-g.jpg",a:["F","G","A"],c:1},
+{q:"Nada apa yang ditunjukkan gambar ini?",img:"img/nada-a-4.jpg",a:["G","A","B"],c:1},
+{q:"Nada apa yang ditunjukkan gambar ini?",img:"img/nada-b-4.jpg",a:["G","A","B"],c:2},
+{q:"Nada apa yang ditunjukkan gambar ini?",img:"img/nada-c-4.jpg",a:["C4","A","B"],c:0},
+{q:"Nada apa yang ditunjukkan gambar ini?",img:"img/nada-d-4.jpg",a:["C","D","B"],c:1},
+{q:"Nada apa yang ditunjukkan gambar ini?",img:"img/nada-e-4.jpg",a:["E","D","B"],c:0},
+{q:"Nada apa yang ditunjukkan gambar ini?",img:"img/nada-f-4.jpg",a:["E","D","F"],c:2},
+{q:"Nada apa yang ditunjukkan gambar ini?",img:"img/nada-g-4.jpg",a:["E","G","F"],c:1},
+{q:"Nada apa yang ditunjukkan gambar ini?",img:"img/nada-a.jpg",a:["E","A","F"],c:1},
+{q:"Nada apa yang ditunjukkan gambar ini?",img:"img/nada-b.jpg",a:["E","A","B"],c:2},
+{q:"Nada apa yang ditunjukkan gambar ini?",img:"img/nada-c-6.jpg",a:["C6","A","F"],c:0},
+{q:"Ini nada apa?",audio:"audio/nada-c.mp3",a:["C","D","E"],c:0},
+{q:"Ini nada apa?",audio:"audio/nada-d.mp3",a:["C","D","E"],c:1},
+{q:"Ini nada apa?",audio:"audio/nada-e.mp3",a:["C","D","E"],c:2},
+{q:"Ini nada apa?",audio:"audio/nada-f.mp3",a:["E","F","G"],c:1},
+{q:"Ini nada apa?",audio:"audio/nada-g.mp3",a:["E","F","G"],c:2},
+{q:"Ini nada apa?",audio:"audio/nada-a.mp3",a:["A","B","C"],c:0},
+{q:"Ini nada apa?",audio:"audio/nada-b.mp3",a:["A","B","C"],c:1},
+{q:"Ini nada apa?",audio:"audio/nada-c-c.mp3",a:["A - C","B - C","C - C"],c:2},
+{q:"Ini nada apa?",audio:"audio/nada-c-b.mp3",a:["A - C","B - C","C - B"],c:2},
+{q:"Ini nada apa?",audio:"audio/nada-e-f.mp3",a:["E - F","B - C","C - D"],c:0},
+{q:"Ini nada apa?",audio:"audio/nada-b-d.mp3",a:["E - F","B - D","C - D"],c:1},
+{q:"Ini nada apa?",audio:"audio/nada-f-c.mp3",a:["F - C","B - D","C - D"],c:0},
+{q:"Ini nada apa?",audio:"audio/nada-g-a.mp3",a:["E - F","B - D","C - D"],c:1},
+{q:"Ini nada apa?",audio:"audio/nada-c-e-g.mp3",a:["C - E - G","G - B - D","F - A - C"],c:0},
+{q:"Ini nada apa?",audio:"audio/nada-d-f-a.mp3",a:["D - F - A","G - B - D","F - A - C"],c:0},
+{q:"Ini nada apa?",audio:"audio/nada-e-g-b.mp3",a:["D - F - A","E - G - B","F - A - C"],c:1},
+{q:"Ini nada apa?",audio:"audio/nada-f-a-c.mp3",a:["D - F - A","E - G - B","F - A - C"],c:2},
+{q:"Ini nada apa?",audio:"audio/nada-g-b-d.mp3",a:["D - F - A","G - B - D","F - A - C"],c:1},
+{q:"Ini nada apa?",audio:"audio/nada-a-c-e.mp3",a:["A - C - E","G - B - D","F - A - C"],c:0},
+{q:"Do Re Mi adalah?",a:["Warna","Nada","Angka"],c:1},
+];
+
+function startGame(){
+    player=document.getElementById("name").value;
+    if(player==""){alert("Isi nama dulu!");return;}
+
+    questions.sort(()=>Math.random()-0.5);
+
+    document.getElementById("start").classList.add("hidden");
+    document.getElementById("quiz").classList.remove("hidden");
+
+    load();
+}
+
+function load(){
+    let q=questions[current];
+
+    document.getElementById("question").innerText=q.q;
+    document.getElementById("media").innerHTML="";
+    document.getElementById("feedback").innerText="";
+
+    if(q.img){
+        document.getElementById("media").innerHTML=`<img src="${q.img}" width="120">`;
+    }
+
+    if(q.audio){
+        document.getElementById("media").innerHTML=`<audio controls src="${q.audio}"></audio>`;
+    }
+
+    let ans=document.getElementById("answers");
+    ans.innerHTML="";
+
+    q.a.forEach((text,i)=>{
+        let div=document.createElement("div");
+        div.className="answer";
+        div.innerText=text;
+        div.onclick=()=>check(i);
+        ans.appendChild(div);
+    });
+
+    updateBar();
+}
+
+function check(i){
+    let q=questions[current];
+    let answers=document.querySelectorAll(".answer");
+
+    answers.forEach(a=>a.style.pointerEvents="none");
+
+    if(i===q.c){
+        score++;
+        answers[i].style.background="green";
+        feedback("✅ Benar!");
+        document.getElementById("correct").play();
+    }else{
+        answers[i].style.background="red";
+        answers[q.c].style.background="green";
+        feedback("❌ Salah! Jawaban: "+q.a[q.c]);
+        document.getElementById("wrong").play();
+    }
+
+    setTimeout(()=>{
+        current++;
+        if(current<questions.length){
+            load();
+        }else{
+            result();
+        }
+    },1500);
+}
+
+function feedback(text){
+    document.getElementById("feedback").innerText=text;
+}
+
+function updateBar(){
+    let p=(current/questions.length)*100;
+    document.getElementById("bar").style.width=p+"%";
+}
+
+function result(){
+    document.getElementById("quiz").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+
+    document.getElementById("player").innerText="Nama: "+player;
+    document.getElementById("score").innerText="Skor: "+score+"/"+questions.length;
+
+    let g="C";
+    if(score>=30) g="B";
+    if(score>=35) g="A";
+
+    document.getElementById("grade").innerText="Grade: "+g;
+}
+
+function screenshot(){
+    html2canvas(document.getElementById("result")).then(c=>{
+        let link=document.createElement("a");
+        link.download="hasil.png";
+        link.href=c.toDataURL();
+        link.click();
+    });
+}
+
+function shareWA(){
+    let text=`Saya ${player} mendapat skor ${score}/${questions.length} di Quiz Musik 🎵`;
+    window.open("https://wa.me/?text="+encodeURIComponent(text));
+}
+</script>
+
+</body>
+</html>
