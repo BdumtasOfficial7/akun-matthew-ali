@@ -1,307 +1,1076 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Profil Siswa Bdumtas Piano</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      box-sizing: border-box;
-      text-decoration: none;
-    }
-    body {
-      font-family: 'Fredoka', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(to right, #8EC5FC, #E0C3FC);
-      color: #333;
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Bdumtas Piano Course</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html,body{
+    width:100%;
+    overflow-x:hidden;
+}
+
+body{
+    background:
+    linear-gradient(
+    135deg,
+    #140021,
+    #220033,
+    #0f0018);
+
+    color:white;
+    min-height:100vh;
+}
+
+/* ======================= */
+/* OVERLAY */
+/* ======================= */
+
+#overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+
+    background:rgba(0,0,0,0.7);
+
+    z-index:90;
+    display:none;
+}
+
+#overlay.active{
+    display:block;
+}
+
+/* ======================= */
+/* SIDEBAR */
+/* ======================= */
+
+.sidebar{
+    position:fixed;
+    top:0;
+    left:0;
+
+    width:280px;
+    height:100%;
+
+    background:
+    rgba(255,255,255,0.05);
+
+    backdrop-filter:blur(20px);
+
+    border-right:
+    1px solid rgba(255,255,255,0.08);
+
+    padding:20px;
+
+    z-index:100;
+
+    overflow-y:auto;
+}
+
+.logo{
+    text-align:center;
+    font-size:32px;
+    font-weight:700;
+
+    color:#ff4fd8;
+
+    margin-bottom:30px;
+
+    text-shadow:
+    0 0 10px #ff4fd8;
+}
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.menu button{
+    border:none;
+
+    padding:16px;
+
+    border-radius:18px;
+
+    background:
+    rgba(255,255,255,0.06);
+
+    color:white;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.menu button:hover{
+
+    background:
+    linear-gradient(
+    135deg,
+    #ff4fd8,
+    #9333ea);
+
+    transform:translateX(5px);
+}
+
+.menu button.active{
+
+    background:
+    linear-gradient(
+    135deg,
+    #ff4fd8,
+    #9333ea);
+
+}
+
+/* ======================= */
+/* MAIN */
+/* ======================= */
+
+.main{
+    margin-left:300px;
+    width:calc(100% - 300px);
+    padding:25px;
+}
+
+/* ======================= */
+/* TOPBAR */
+/* ======================= */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+    margin-bottom:25px;
+}
+
+.title{
+    font-size:38px;
+    font-weight:700;
+
+    background:
+    linear-gradient(
+    to right,
+    #ff4fd8,
+    #9333ea,
+    #f59e0b);
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.level-box{
+
+    background:
+    rgba(255,255,255,0.06);
+
+    padding:15px 20px;
+
+    border-radius:20px;
+
+    border:
+    1px solid rgba(255,255,255,0.1);
+
+    box-shadow:
+    0 0 20px rgba(255,79,216,0.2);
+}
+
+/* ======================= */
+/* PAGE */
+/* ======================= */
+
+.page{
+    display:none;
+    animation:fade 0.3s ease;
+}
+
+.active-page{
+    display:block;
+}
+
+@keyframes fade{
+
+    from{
+        opacity:0;
+        transform:translateY(10px);
     }
 
-    .container {
-      max-width: 800px;
-      margin: 50px auto;
-      background: white;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    to{
+        opacity:1;
+        transform:translateY(0);
     }
 
-    h1, h2 {
-      text-align: center;
-      color: #6C63FF;
+}
+
+/* ======================= */
+/* PROFILE */
+/* ======================= */
+
+.profile-card{
+    background:
+    rgba(255,255,255,0.05);
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    border-radius:25px;
+
+    padding:25px;
+
+    display:flex;
+    align-items:center;
+    gap:25px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:25px;
+
+    box-shadow:
+    0 0 30px rgba(255,79,216,0.1);
+}
+
+.profile-img{
+    width:130px;
+    height:130px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:5px solid #ff4fd8;
+
+    box-shadow:
+    0 0 20px #ff4fd8;
+}
+
+.profile-info h2{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.exp-bar{
+    width:300px;
+    height:18px;
+
+    background:#1e293b;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin-top:10px;
+}
+
+.exp-fill{
+    width:0%;
+    height:100%;
+
+    background:
+    linear-gradient(
+    to right,
+    #ff4fd8,
+    #9333ea,
+    #f59e0b);
+}
+
+/* ======================= */
+/* GRID */
+/* ======================= */
+
+.grid{
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:20px;
+}
+
+/* ======================= */
+/* CARD */
+/* ======================= */
+
+.card,
+.stat-card{
+
+    background:
+    rgba(255,255,255,0.05);
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    border-radius:22px;
+
+    padding:22px;
+
+    box-shadow:
+    0 0 25px rgba(255,79,216,0.08);
+}
+
+.card{
+    margin-bottom:20px;
+}
+
+.card h2{
+    margin-bottom:18px;
+
+    color:#ff4fd8;
+}
+
+/* ======================= */
+/* STATS */
+/* ======================= */
+
+.progress{
+    width:100%;
+    height:15px;
+
+    background:#1e293b;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin:10px 0;
+}
+
+.progress div{
+    height:100%;
+}
+
+/* intelegent */
+.rhythm{
+    width:40%;
+    background:#ff4fd8;
+}
+
+/* agility */
+.technique{
+    width:50%;
+    background:#9333ea;
+}
+
+/* strenght */
+.creativity{
+    width:30%;
+    background:#f59e0b;
+}
+
+/* ======================= */
+/* LESSON */
+/* ======================= */
+
+.lesson,
+.setting,
+.player{
+    background:
+    rgba(255,255,255,0.05);
+
+    padding:15px;
+
+    border-radius:15px;
+
+    margin-bottom:10px;
+}
+
+/* ======================= */
+/* BADGE */
+/* ======================= */
+
+.badge{
+
+    background:
+    linear-gradient(
+    135deg,
+    #ff4fd8,
+    #9333ea,
+    #f59e0b);
+
+    padding:15px;
+
+    border-radius:15px;
+
+    margin-bottom:10px;
+
+    font-weight:600;
+}
+
+/* ======================= */
+/* TASK */
+/* ======================= */
+
+.task{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:10px;
+
+    background:
+    rgba(255,255,255,0.05);
+
+    padding:15px;
+
+    border-radius:15px;
+
+    margin-bottom:10px;
+}
+
+.task button{
+    border:none;
+
+    background:
+    linear-gradient(
+    135deg,
+    #ff4fd8,
+    #9333ea);
+
+    color:white;
+
+    padding:10px 15px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+}
+
+/* ======================= */
+/* QUIZ */
+/* ======================= */
+
+.quiz-option{
+    width:100%;
+
+    border:none;
+
+    padding:15px;
+
+    margin-top:10px;
+
+    border-radius:15px;
+
+    background:#1e293b;
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.quiz-option:hover{
+
+    background:
+    linear-gradient(
+    135deg,
+    #ff4fd8,
+    #9333ea);
+
+}
+
+/* ======================= */
+/* MEDIA */
+/* ======================= */
+
+iframe,
+video,
+audio{
+    width:100%;
+    max-width:100%;
+
+    border-radius:15px;
+
+    margin-top:10px;
+}
+
+/* ======================= */
+/* MENU TOGGLE */
+/* ======================= */
+
+.menu-toggle{
+    display:none;
+}
+
+/* ======================= */
+/* MOBILE */
+/* ======================= */
+
+@media(max-width:900px){
+
+    .sidebar{
+        left:-100%;
+
+        width:85%;
+        max-width:320px;
+
+        transition:0.3s;
     }
 
-    .nav {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-      margin-bottom: 30px;
+    .sidebar.active{
+        left:0;
     }
 
-    .nav button {
-      background: #FFD166;
-      border: none;
-      color: #333;
-      font-size: 16px;
-      font-weight: bold;
-      padding: 12px 20px;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    .main{
+        margin-left:0;
+        width:100%;
+        padding:12px;
     }
 
-    .nav button:hover {
-      transform: scale(1.08);
-      background: #FFB703;
-      color: white;
+    .topbar{
+        flex-direction:column;
+        align-items:flex-start;
     }
 
-    .profile-header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      margin-bottom: 20px;
+    .title{
+        font-size:28px;
     }
 
-    .profile-pic {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 5px solid #6C63FF;
-      margin-bottom: 10px;
+    .menu-toggle{
+        display:block;
+
+        border:none;
+
+        background:
+        linear-gradient(
+        135deg,
+        #ff4fd8,
+        #9333ea);
+
+        color:white;
+
+        padding:10px 15px;
+
+        border-radius:10px;
+
+        margin-bottom:10px;
+
+        cursor:pointer;
     }
 
-    .info {
-      display: flex;
-      justify-content: space-between;
-      padding: 8px 0;
-      font-size: 16px;
+    .profile-card{
+        flex-direction:column;
+        text-align:center;
     }
 
-    .level, .level a {
-      padding: 4px 10px;
-      background: #6C63FF;
-      color: white;
-      border-radius: 12px;
-      font-size: 14px;
+    .profile-img{
+        width:110px;
+        height:110px;
     }
 
-    .stat {
-      margin: 15px 0;
+    .profile-info h2{
+        font-size:24px;
     }
 
-    .bar-bg {
-      background: #eee;
-      border-radius: 12px;
-      overflow: hidden;
-      height: 24px;
+    .exp-bar{
+        width:100%;
     }
 
-    .bar-fill {
-      height: 100%;
-      color: white;
-      padding-left: 10px;
-      font-size: 13px;
-      display: flex;
-      align-items: center;
+    .grid{
+        grid-template-columns:1fr;
     }
 
-    .tasks {
-      margin-top: 30px;
+    .task{
+        flex-direction:column;
+        align-items:flex-start;
     }
 
-    .task {
-      background: #FFF3C4;
-      padding: 12px;
-      border-left: 5px solid #FFD166;
-      margin-bottom: 12px;
-      border-radius: 8px;
+    .task button{
+        width:100%;
     }
 
-    @media (max-width: 600px) {
-      .info {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .nav {
-        flex-direction: column;
-        gap: 10px;
-      }
+}
+
+/* ======================= */
+/* SMALL PHONE */
+/* ======================= */
+
+@media(max-width:480px){
+
+    .title{
+        font-size:24px;
     }
 
-    .hidden {
-      display: none;
+    .logo{
+        font-size:26px;
     }
-  </style>
+
+}
+
+</style>
 </head>
+
 <body>
 
-<div class="container">
-  <h1>Profil Siswa</h1>
+<div id="overlay"
+onclick="closeMenu()"></div>
 
-  <div class="nav">
-    <button onclick="showPage('profile')">Dashboard</button>
-    <button onclick="showPage('alur')">Alur Belajar</button>
-    <button onclick="showPage('quiz')">Quiz</button>
-    <button onclick="showPage('tasks')">Tugas</button>
-    <button onclick="showPage('stats')">Statistik</button>
-    <button onclick="showPage('tools')">Tools</button>
-    <!-- <button onclick="alert('Sampai jumpa!')">Keluar</button> -->
-  </div>
+<!-- ======================= -->
+<!-- SIDEBAR -->
+<!-- ======================= -->
 
-  <!-- PROFIL -->
-  <div id="profile" class="page-section">
-    <div class="profile-header">
-      <img src="img.jpg" alt="Foto Siswa" class="profile-pic">
-      <h2 id="student-name">Matthew Ali</h2>
+<div class="sidebar"
+id="sidebar">
+
+    <div class="logo">
+        BDUMTAS PIANO COURSE
     </div>
 
-    <div class="info"><strong>Usia:</strong> <span id="student-age">9 tahun</span></div>
-    <div class="info"><strong>Level:</strong> <span class="level" id="student-level">1 Beginner</span></div>
-    <div class="info"><strong>Hari Belajar:</strong> <span class="level" id="student-level">Selasa</span></div>
-    <div class="info"><strong>Jam Belajar:</strong> <span class="level" id="student-level">16.00 WITA</span></div>
-    <!-- <div class="info"><strong>Rapor</strong> <span class="level" id="student-level"><a href="ppm_jj.pdf">Penilaian Penampilan 29-11/2025</a></span></div> -->
-  </div>
+    <div class="menu">
 
-  <!-- ALUR BELAJAR -->
-  <div id="alur" class="page-section hidden">
-    <!-- <div class="task">Lakukan tes kemampuan sebelum memulai pembelajaran.</div> -->
-    <h2>Alur Belajar Piano Pemula</h2>
-    <h3>Ikuti alur belajar di bawah ini supaya mendapat hasil yang memuaskan.</h3>
-    <div class="task">1. Cari tahu tentang Partitur: <a href="partitur.pdf">klik di sini.</a></div>
-    <div class="task">2. Cari tahu cara baca not balok: <a href="belajar-membaca-nada.pdf">klik di sini.</a></div>
-    <div class="task">2.1. Posisi nada dalam partitur: <a href="cara-baca-not.pdf">klik di sini.</a></div>
-    <div class="task">2.2. Nilai ketuk: <a href="nilai-ketuk-not.pdf">klik di sini.</a></div>
-    <div class="task">7. Buat tugas 1 - 12 Piano Pemula</div>
-    <!-- <h2>Alur Belajar Piano Intermediate</h2> -->
-    <!-- <div class="task">8. ... <a href="">klik di sini.</a></div> -->
-  </div>
+        <button class="menu-btn active"
+        onclick="showPage('dashboard',this)">
+            ⚙ Dashboard
+        </button>
 
-  <!-- QUIZ -->
-  <div id="quiz" class="page-section hidden">
-    <!-- <div class="task">Lakukan tes kemampuan sebelum memulai pembelajaran.</div> -->
-    <h2>Quiz</h2>
-    <h3>Ikuti Quiz untuk meningkatkan kemampuanmu.</h3>
-    <div class="task">1. Quiz 1: <a href="game_edukasi_satu/index.html"> klik di sini.</a></div>
-    <div class="task">1.1. Kirim <b>Hasil Akhir</b> Quiz 1 ke nomor WA pengajar.</div>
-    <div class="task">2. Quiz 2: <a href="game_edukasi_dua/index.html"> klik di sini.</a></div>
-    <div class="task">2.1. Kirim <b>Hasil Akhir</b> Quiz 2 ke nomor WA pengajar.</div>
-    <div class="task">3. Quiz 3: <a href="game_edukasi_tiga/index.html"> klik di sini.</a></div>
-    <div class="task">3.1. Kirim <b>Hasil Akhir</b> Quiz 3 (dalam bentuk screenshot) ke nomor WA pengajar.</div>
-    <div class="task">4. Quiz 4: <a href="game_edukasi_empat/index.html"> klik di sini.</a></div>
-    <div class="task">4.1. Kirim <b>Hasil Akhir</b> Quiz 4 (dalam bentuk screenshot) ke nomor WA pengajar.</div>
-    <!-- <h2>Alur Belajar Piano Intermediate</h2> -->
-    <!-- <div class="task">8. ... <a href="">klik di sini.</a></div> -->
-  </div>
+        <button class="menu-btn"
+        onclick="showPage('courses',this)">
+            🎼 Courses
+        </button>
 
-  <!-- TUGAS -->
-  <div id="tasks" class="page-section hidden">
-    <!-- <div class="task">Lakukan tes kemampuan sebelum memulai pembelajaran.</div> -->
-    <h2>Tugas Piano Pemula</h2>
-    <div class="task"><a href="tugas1-matthew.pdf">Tugas 1 - DONE</a></div>
-    <div class="task"><a href="tugas2-matthew.pdf">Tugas 2</a></div>
-    <div class="task"><a href="">Tugas 3</a></div>
-    <div class="task">Mainkan <a href="lagu1.pdf">Lagu 1</a> untuk naik ke level 2</div>
-    <!-- <div class="task"><a href="">Tugas 4 - DONE</a></div>
-    <div class="task"><a href="">Tugas 5 - DONE</a></div>
-    <div class="task"><a href="">Tugas 6 - DONE</a></div>
-    <div class="task">Mainkan <a href="">Lagu 2</a> untuk naik ke level 3</div>
-    <div class="task"><a href="">Tugas 7 - DONE</a></div>
-    <div class="task"><a href="">Tugas 8 - DONE</a></div>
-    <div class="task"><a href="">Tugas 9 - DONE</a></div>
-    <div class="task">Mainkan <a href="">Lagu 3</a> untuk naik ke level 4</div>
-    <div class="task"><a href="">Tugas 10 - DONE</a></div>
-    <div class="task"><a href="">Tugas 11 - DONE</a></div>
-    <div class="task"><a href="">Tugas 12 - DONE</a></div>
-    <div class="task">Mainkan <a href="lagu4.pdf">Lagu 4</a> untuk naik ke level 5</div>
-    <div class="task">Ikut Ujian Naik Kelas untuk lanjut ke Piano Menengah!!!</div> -->
-    <!-- <h2>Tugas Piano Menengah</h2>
-    <div class="task"><a href="tugas13_intermediate.pdf">Tugas 13</a></div>
-    <div class="task"><a href="tugas14_intermediate.pdf">Tugas 14</a></div>
-    <div class="task"><a href="tugas15_intermediate.pdf">Tugas 15</a></div>
-    <div class="task">Mainkan <a href="lagu5.pdf">Lagu 5</a> dan <a href="lagu6.pdf">Lagu 6</a> untuk naik ke level 6 (Ikut Ujian Naik Level)</div> -->
-    <!-- <div class="task"><a href="">Tugas 16</a></div>
-    <div class="task"><a href="">Tugas 17</a></div>
-    <div class="task"><a href="">Tugas 18</a></div>
-    <div class="task">Mainkan <a href="">Lagu 7</a> dan <a href="">Lagu 8</a> untuk naik ke level 7</div>
-    <div class="task"><a href="">Tugas 19</a></div>
-    <div class="task"><a href="">Tugas 20</a></div>
-    <div class="task"><a href="">Tugas 21</a></div>
-    <div class="task">Mainkan <a href="">Lagu 9</a> dan <a href="">Lagu 10</a> untuk naik ke level 8</div>
-    <div class="task"><a href="">Tugas 22</a></div>
-    <div class="task"><a href="">Tugas 23</a></div>
-    <div class="task"><a href="">Tugas 24</a></div>
-    <div class="task">Mainkan <a href="">Lagu 11</a> dan <a href="">Lagu 12</a> untuk naik ke level 9</div>
-    <div class="task"><a href="">Tugas 25</a></div>
-    <div class="task"><a href="">Tugas 26</a></div>
-    <div class="task"><a href="">Tugas 27</a></div>
-    <div class="task">Mainkan <a href="">Lagu 13</a> dan <a href="">Lagu 14</a> untuk naik ke level 10</div>
-    <div class="task"><a href="">Tugas 28</a></div>
-    <div class="task"><a href="">Tugas 29</a></div>
-    <div class="task"><a href="">Tugas 30</a></div>
-    <div class="task">Mainkan <a href="">Lagu 15</a> dan <a href="">Lagu 16</a> untuk naik ke level 11</div>
-    <div class="task"><a href="">Tugas 31</a></div>
-    <div class="task"><a href="">Tugas 32</a></div>
-    <div class="task"><a href="">Tugas 33</a></div>
-    <div class="task">Mainkan <a href="">Lagu 17</a> dan <a href="">Lagu 18</a> untuk naik ke level 12</div>
-    <div class="task"><a href="">Tugas 34</a></div>
-    <div class="task"><a href="">Tugas 35</a></div>
-    <div class="task"><a href="">Tugas 36</a></div>
-    <div class="task">Mainkan <a href="">Lagu 19</a> dan <a href="">Lagu 20</a> untuk naik ke level 13</div>
-    <div class="task"><a href="">Tugas 37</a></div>
-    <div class="task"><a href="">Tugas 38</a></div>
-    <div class="task"><a href="">Tugas 39</a></div>
-    <div class="task">Mainkan <a href="">Lagu 21</a> dan <a href="">Lagu 22</a> untuk naik ke level 14</div>
-    <div class="task"><a href="">Tugas 40</a></div>
-    <div class="task"><a href="">Tugas 41</a></div>
-    <div class="task"><a href="">Tugas 42</a></div>
-    <div class="task">Mainkan <a href="">Lagu 23</a> dan <a href="">Lagu 24</a> untuk naik ke level 15</div>
-    <div class="task"><a href="">Tugas 43</a></div>
-    <div class="task"><a href="">Tugas 44</a></div>
-    <div class="task"><a href="">Tugas 45</a></div>
-    <div class="task">Mainkan <a href="">Lagu 25</a> untuk naik ke level 16</div>
-    <div class="task">Ikut Ujian Naik Kelas untuk lanjut ke kelas selanjutnya...</div> -->
-  </div>
+        <button class="menu-btn"
+        onclick="showPage('practice',this)">
+            📝 Assignment 
+        </button>
 
-  <!-- STATISTIK -->
-  <div id="stats" class="page-section hidden">
-    <h2>Statistik Karakter</h2>
-    <div class="stat">
-      <label>Intelegent</label>
-      <div class="bar-bg"><div class="bar-fill" style="width: 85%; background: #6C63FF;">85</div></div>
+        <button class="menu-btn"
+        onclick="showPage('assignment',this)">
+            🎹 Practice
+        </button>
+
+        <button class="menu-btn"
+        onclick="showPage('achievement',this)">
+            🏆 Achievement
+        </button>
+
+        <button class="menu-btn"
+        onclick="showPage('leaderboard',this)">
+            🥇 Leaderboard
+        </button>
+
+        <!-- <button class="menu-btn"
+        onclick="showPage('media',this)">
+            🎬 Media
+        </button> -->
+
+        <button class="menu-btn"
+        onclick="showPage('settings',this)">
+            ⚙ Tools
+        </button>
+
     </div>
-    <div class="stat">
-      <label>Strength</label>
-      <div class="bar-bg"><div class="bar-fill" style="width: 90%; background: #FFD166;">90</div></div>
-    </div>
-    <div class="stat">
-      <label>Agility</label>
-      <div class="bar-bg"><div class="bar-fill" style="width: 90%; background: #8EC5FC;">90</div></div>
-    </div>
-  </div>
 
-  <!-- TOOLS -->
-  <div id="tools" class="page-section hidden">
-    <label>ChatBot</label>
-    <!-- <div class="task">Hubungi pengajar untuk mengupload tugas...</div> -->
-    <div class="task"><a href="chatbot/index.html">Buka ChatBot</a></div>
-    <label>Songs</label>
-    <!-- <div class="task">Hubungi pengajar untuk mengupload tugas...</div> -->
-    <div class="task"><a href="songs/lirik.html">Buka Songs</a></div>
-  </div>
+</div>
+
+<!-- ======================= -->
+<!-- MAIN -->
+<!-- ======================= -->
+
+<div class="main">
+
+    <div class="topbar">
+
+        <div>
+
+            <button class="menu-toggle"
+            onclick="toggleMenu()">
+                ☰ Menu
+            </button>
+
+            <div class="title">
+                Bdumtas Piano Course
+            </div>
+
+        </div>
+
+        <div class="level-box">
+            ⭐ Level 1
+        </div>
+
+    </div>
+
+    <!-- DASHBOARD -->
+
+    <div id="dashboard"
+    class="page active-page">
+
+        <div class="profile-card">
+
+            <img
+            src="img.jpg"
+            class="profile-img">
+
+            <div class="profile-info">
+
+                <h2>Matthew Ali</h2>
+
+                <p>Age: 9 Years Old</p>
+
+                <p>Piano Beginner</p>
+
+                <div class="exp-bar">
+                    <div class="exp-fill"></div>
+                </div>
+
+                <p>EXP 0 / 100</p>
+
+            </div>
+
+        </div>
+
+        <div class="grid">
+
+            <div class="stat-card">
+
+                <h3>🎵 Intelegent</h3>
+
+                <div class="progress">
+                    <div class="rhythm"></div>
+                </div>
+
+                <p>100 Points</p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>🎹 Agility</h3>
+
+                <div class="progress">
+                    <div class="technique"></div>
+                </div>
+
+                <p>100 Points</p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>🎼 Strenght</h3>
+
+                <div class="progress">
+                    <div class="creativity"></div>
+                </div>
+
+                <p>100 Points</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- COURSES -->
+
+    <div id="courses"
+    class="page">
+
+        <div class="card">
+
+            <h2>🎼 Music Courses</h2>
+
+            <div class="lesson">✅ Partitur: <a href="alur-belajar/partitur.pdf">Klik di sini</a></div>
+            <div class="lesson">✅ Nilai Ketuk Not: <a href="alur-belajar/nilai-ketuk-not.pdf">Klik di sini</a></div>
+            <div class="lesson">✅ Belajar membaca Nada: <a href="alur-belajar/belajar-membaca-nada.pdf">Klik di sini</a></div>
+            <div class="lesson">✅ Nilai Nada Not: <a href="alur-belajar/cara-baca-not.pdf">Klik di sini</a></div>
+            <div class="lesson">✅ Birama</div>
+            <div class="lesson">✅ Kromatik</div>
+            <div class="lesson">✅ Mainkan Lagu 1: <a href="alur-belajar/tugas-1.pdf">Klik di sini</a></div>
+            <div class="lesson">✅ Mainkan Lagu 2: <a href="alur-belajar/tugas-2.pdf">Klik di sini</a></div>
+            <div class="lesson">🔒 Mainkan Lagu 3</div>
+            <div class="lesson">🔒 Mainkan Lagu 4</div>
+            <div class="lesson">🔒 Mainkan Lagu 5</div>
+            <div class="lesson">🔒 Mainkan Lagu 6</div>
+            <div class="lesson">🔒 Mainkan Lagu 7</div>
+            <div class="lesson">🔒 Mainkan Lagu 8</div>
+            <div class="lesson">🔒 Mainkan Lagu 9</div>
+            <div class="lesson">🔒 Mainkan Lagu 10</div>
+            <div class="lesson">🔒 Mainkan Lagu 11</div>
+            <div class="lesson">🔒 Mainkan Lagu 12</div>
+            <div class="lesson">🔒 Mainkan Lagu 13</div>
+            <div class="lesson">🔒 Mainkan Lagu 14</div>
+            <div class="lesson">🔒 Mainkan Lagu 15</div>
+            <div class="lesson">🔒 Mainkan Lagu 16</div>
+            <div class="lesson">🔒 Mainkan Lagu 17</div>
+            <div class="lesson">🔒 Mainkan Lagu 18</div>
+            <div class="lesson">🔒 Mainkan Lagu 19</div>
+            <div class="lesson">🔒 Mainkan Lagu 20</div>
+            <div class="lesson">🔒 Mainkan Lagu 21</div>
+            <div class="lesson">🔒 Mainkan Lagu 22</div>
+            <div class="lesson">🔒 Mainkan Lagu 23</div>
+            <div class="lesson">🔒 Mainkan Lagu 24</div>
+            <div class="lesson">🔒 Mainkan Lagu 25</div>
+
+        </div>
+
+    </div>
+
+    <!-- PRACTICE -->
+
+    <div id="practice"
+    class="page">
+
+        <div class="card">
+
+            <h2>📝 Assignment</h2>
+            <p>Screenshot hasil quiz dan kirim ke nomor penguji</p><br>
+            <div class="lesson"><p>Quiz 1: <a href="quiz/game_edukasi_satu/index.html">klik di sini</a></p></div>
+            <div class="lesson"><p>Quiz 2: <a href="quiz/game_edukasi_dua/index.html">klik di sini</a></p></div>
+            <div class="lesson"><p>Quiz 3: <a href="quiz/game_edukasi_tiga/index.html">klik di sini</a></p></div>
+            <div class="lesson"><p>Quiz 4: <a href="quiz/game_edukasi_empat/index.html">klik di sini</a></p></div>
+
+        </div>
+
+    </div>
+
+    <!-- ASSIGNMENT -->
+
+    <div id="assignment"
+    class="page">
+
+        <div class="card">
+
+            <h2>🎹 Daily Practice</h2>
+
+            <div class="task">
+
+                <span>
+                    Piano PDF Exercise
+                </span>
+
+                <button>
+                    <a href="practice/lagu1.pdf">Open</a>
+                </button>
+
+            </div>
+
+            <div class="task">
+
+                <span>
+                    Listening MP3
+                </span>
+
+                <button>
+                    No Need
+                </button>
+
+            </div>
+
+            <div class="task">
+
+                <span>
+                    Video Tutorial
+                </span>
+
+                <button>
+                    <a href="practice/video.html">Watch</a>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ACHIEVEMENT -->
+
+    <div id="achievement"
+    class="page">
+
+        <div class="card">
+
+            <h2>
+                🏆 Achievement
+            </h2>
+
+            <p>Rajin belajar akan mendapatkan Achievement Reward!</p>
+
+            <!-- <div class="badge">
+                🎹 Piano Hero
+            </div>
+
+            <div class="badge">
+                🎼 Music Reader
+            </div>
+
+            <div class="badge">
+                🔥 30 Days Practice
+            </div> -->
+
+        </div>
+
+    </div>
+
+    <!-- LEADERBOARD -->
+
+    <div id="leaderboard"
+    class="page">
+
+        <div class="card">
+
+            <h2>
+                🥇 Leaderboard
+            </h2>
+
+            <p>Segera di-update...</p>
+
+            <!-- <div class="player">
+                <span>Aldo</span>
+                <span>Level 8</span>
+            </div>
+
+            <div class="player">
+                <span>Kevin</span>
+                <span>Level 7</span>
+            </div>
+
+            <div class="player">
+                <span>Sarah</span>
+                <span>Level 6</span>
+            </div> -->
+
+        </div>
+
+    </div>
+
+    <!-- MEDIA -->
+
+    <div id="media"
+    class="page">
+
+        <div class="card">
+
+            <h2>
+                🎬 Video Lesson
+            </h2>
+
+            <video controls>
+
+                <source
+                src="https://www.w3schools.com/html/mov_bbb.mp4"
+                type="video/mp4">
+
+            </video>
+
+        </div>
+
+        <div class="card">
+
+            <h2>
+                🎧 Audio Lesson
+            </h2>
+
+            <audio controls>
+
+                <source
+                src="https://www.w3schools.com/html/horse.mp3"
+                type="audio/mp3">
+
+            </audio>
+
+        </div>
+
+    </div>
+
+    <!-- SETTINGS -->
+
+    <div id="settings"
+    class="page">
+
+        <div class="card">
+
+            <h2>⚙ Tools</h2>
+
+            <div class="setting">👤 Chatbot: <a href="tools/chatbot/index.html">klik di sini</a></div>
+            <div class="setting">🌙 Songs: <a href="tools/songs/lirik.html">klik di sini</a></div>
+            <!-- <div class="setting">🔔 Notification</div> -->
+
+        </div>
+
+    </div>
+
 </div>
 
 <script>
-  function showPage(pageId) {
-    const pages = document.querySelectorAll('.page-section');
-    pages.forEach(page => page.classList.add('hidden'));
-    document.getElementById(pageId).classList.remove('hidden');
-  }
+
+function toggleMenu(){
+
+    document
+    .getElementById("sidebar")
+    .classList.toggle("active");
+
+    document
+    .getElementById("overlay")
+    .classList.toggle("active");
+
+}
+
+function closeMenu(){
+
+    document
+    .getElementById("sidebar")
+    .classList.remove("active");
+
+    document
+    .getElementById("overlay")
+    .classList.remove("active");
+
+}
+
+function showPage(pageId,button){
+
+    const pages =
+    document.querySelectorAll('.page');
+
+    pages.forEach(page=>{
+
+        page.classList.remove('active-page');
+
+    });
+
+    document
+    .getElementById(pageId)
+    .classList.add('active-page');
+
+    const buttons =
+    document.querySelectorAll('.menu-btn');
+
+    buttons.forEach(btn=>{
+
+        btn.classList.remove('active');
+
+    });
+
+    button.classList.add('active');
+
+    closeMenu();
+
+}
+
 </script>
 
 </body>
